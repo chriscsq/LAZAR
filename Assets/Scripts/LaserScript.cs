@@ -27,6 +27,12 @@ public class LaserScript : MonoBehaviour
         FireLaserRecursive(thisTransform.position, thisTransform.forward, 0);
     }
 
+    // TODO:
+    //      * Return an array of points and colours. That way, multiple lines can be drawn as needed for the power-ups.
+    //      * After returning the array of points, set positionCount to its length and use SetPositions() with the array.
+    //      * For the multiple colours, I think what'll need to be done is similar to that Unity Forum link with "ray splitting", but instead of using tags, I think we should just reference the other instantiations in a list.
+    //          * That is, have a list called "pseudoChildren" referencing all new instantiations further down the line.
+    //          * And on each update, before clearing it, see if you can just modify it.
     void FireLaserRecursive(Vector3 rayStart, Vector3 rayDir, int depth) {
         if (depth > MAX_REC_DEPTH) return;
 
@@ -39,15 +45,16 @@ public class LaserScript : MonoBehaviour
             if(hit.collider) {
                 // Stuff for mirror hit here.
                 if (hit.collider.tag == "Mirror") {
-                    Debug.Log("Hit Mirror! Bzzt!");
+                    //Debug.Log("Hit Mirror! Bzzt!");
                     Vector3 inVec = hit.point - rayStart;
 
                     // Use the point's normal to calculate the reflection vector.
                     Vector3 rVec = Vector3.Normalize(Vector3.Reflect(inVec, hit.normal));
 
                     // Since the mirror has reflected the ray, we recurse.
-                    line.positionCount += 1;
-                    FireLaserRecursive(hit.point + 0.001f*hit.normal, rVec, depth+1);
+                    line.positionCount += 3;
+                    line.SetPosition(depth+2, hit.point + 0.001f*hit.normal);
+                    FireLaserRecursive(hit.point + 0.001f*hit.normal, rVec, depth+2);
                 }
                 // Stuff for enemy hit here.
                 else if (hit.collider.tag == "Enemy") {
