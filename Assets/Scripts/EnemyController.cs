@@ -1,14 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class EnemyController : MonoBehaviour
 {
+
+    public float health = 100;
     public Transform enemyGoal;
     [SerializeField]
     private float speed = 0.5f;
     [SerializeField]
     private float targetProximityThreshold = 0.005f;
+
+    [Header("Healthbar")]
+    public Image healthBar;
 
     private Transform thisTransform;
     private Transform parentTransform;
@@ -36,5 +43,17 @@ public class EnemyController : MonoBehaviour
         
         thisTransform.Translate(nextMove, parentTransform);
 
+    }
+
+    public void TakeDamage(float amount) 
+    {
+        health -= amount;
+        healthBar.fillAmount = health/100;
+
+        /* Maybe we can add a death animation  here */
+        if (health <= 0) 
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

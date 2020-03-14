@@ -9,6 +9,7 @@ public class LaserScript : MonoBehaviour
 
     private int LINE_TERM_DIST = 1000; // Line length if it doesn't hit anything.
     private int MAX_REC_DEPTH = 100; // Max reflection recursion depth
+    private int damage = 5;
     
     // Start is called before the first frame update
     void Start()
@@ -56,8 +57,12 @@ public class LaserScript : MonoBehaviour
                     line.SetPosition(depth+2, hit.point + 0.001f*hit.normal);
                     FireLaserRecursive(hit.point + 0.001f*hit.normal, rVec, depth+2);
                 }
-                // Stuff for enemy hit here.
+                // Stuff for 
                 else if (hit.collider.tag == "Enemy") {
+                    EnemyController enemy = hit.collider.GetComponent<EnemyController>();
+                    enemy.TakeDamage(0.5f);
+
+                    
                     //Debug.Log("Enemy hit! Kapow!");
                 }
             }
