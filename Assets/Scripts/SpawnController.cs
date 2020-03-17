@@ -27,13 +27,15 @@ public class SpawnController : MonoBehaviour
     private Transform thisTransform;
     private Collider thisCollider;
 
+    private int enemyCount;
+
     
     // Start is called before the first frame update
     void Start()
     {
         thisTransform = GetComponent<Transform>();
         thisCollider = GetComponent<Collider>();
-
+        enemyCount = 0;
         // In Start(), we will calculate centreSpawnPoint for its use in Update().
         
     }
@@ -44,7 +46,7 @@ public class SpawnController : MonoBehaviour
         timeSinceLastSpawn += Time.deltaTime;
         
 
-        if (timeSinceLastSpawn > spawnPeriod) {
+        if (timeSinceLastSpawn > spawnPeriod && enemyCount < 5) {
             Vector3 spawnLoc = thisTransform.position;
             if (thisCollider != null) {
                 spawnLoc = thisCollider.bounds.center + thisCollider.bounds.extents.y*thisTransform.up;
@@ -63,7 +65,8 @@ public class SpawnController : MonoBehaviour
             spawnedEnemy.transform.localRotation = Quaternion.identity;
             EnemyController ec = spawnedEnemy.GetComponent<EnemyController>();
             ec.enemyGoal = enemyGoal;
-            Destroy(spawnedEnemy, 25);
+            Destroy(spawnedEnemy, 10);
+            enemyCount += 1;
 
             if (!showEnemy) {
                 // If an object is parented to an image target after the target is lost,

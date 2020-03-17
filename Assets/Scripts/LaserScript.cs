@@ -52,9 +52,9 @@ public class LaserScript : MonoBehaviour
                     Vector3 rVec = Vector3.Normalize(Vector3.Reflect(inVec, hit.normal));
 
                     // Since the mirror has reflected the ray, we recurse.
-                    line.positionCount += 3;
-                    line.SetPosition(depth+2, hit.point + 0.001f*hit.normal);
-                    FireLaserRecursive(hit.point + 0.001f*hit.normal, rVec, depth+2);
+                    line.positionCount += 1;
+                    //line.SetPosition(depth+2, hit.point + 0.001f*hit.normal);
+                    FireLaserRecursive(hit.point + 0.001f*hit.normal, rVec, depth+1);
                 }
                 // Stuff for enemy hit here.
                 else if (hit.collider.tag == "Enemy") {
