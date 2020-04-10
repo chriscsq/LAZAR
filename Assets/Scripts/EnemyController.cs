@@ -56,4 +56,13 @@ public class EnemyController : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+
+    private void OnTriggerEnter(Collider other) 
+    {
+        if (other.gameObject.CompareTag("Chest")) 
+        {
+            Treasure chest = other.gameObject.GetComponent<Treasure>();
+            chest.TakeDamage(1.0f);
+        }
+    }
 }
