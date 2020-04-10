@@ -61,8 +61,9 @@ public class EnemyController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Chest")) 
         {
+            Debug.Log("Collide");
             Treasure chest = other.gameObject.GetComponent<Treasure>();
-            chest.TakeDamage(1.0f);
+            chest.TakeDamage(5.0f);
         }
     }
 }

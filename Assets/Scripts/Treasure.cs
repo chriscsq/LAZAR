@@ -27,6 +27,7 @@ public class Treasure : MonoBehaviour
     public void TakeDamage(float amount) {
         health -= amount;
         healthBar.fillAmount = health/100;
+        Debug.Log("Health is at " + health);
 
         if (health <= 0) 
         {
