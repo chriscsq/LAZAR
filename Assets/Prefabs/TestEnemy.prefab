@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5146254583040034149}
   - component: {fileID: 1320167434976963709}
   - component: {fileID: 286002331339133037}
+  - component: {fileID: 2236603961526793845}
   m_Layer: 0
   m_Name: TestEnemy
   m_TagString: Enemy
@@ -110,3 +111,25 @@ MonoBehaviour:
   enemyGoal: {fileID: 0}
   speed: 2.5
   targetProximityThreshold: 0.005
+--- !u!195 &2236603961526793845
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7117845952033320867}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.75
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 1
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4

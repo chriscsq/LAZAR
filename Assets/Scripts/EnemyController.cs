@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
@@ -12,17 +13,22 @@ public class EnemyController : MonoBehaviour
 
     private Transform thisTransform;
     private Transform parentTransform;
+    private NavMeshAgent navMeshAgent;
+
     // Start is called before the first frame update
     void Start()
     {
         thisTransform = GetComponent<Transform>();
         parentTransform = thisTransform.parent.GetComponent<Transform>();
+
+        navMeshAgent = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        navMeshAgent.SetDestination(enemyGoal.position);
+        /*
         Vector3 locDiff = enemyGoal.localPosition - thisTransform.localPosition;
         Vector3 travelDir = Vector3.Normalize(locDiff);
         Vector3 nextMove = speed * Time.deltaTime * travelDir;
@@ -35,6 +41,6 @@ public class EnemyController : MonoBehaviour
             nextMove = locDiff.magnitude * nextMove;
         
         thisTransform.Translate(nextMove, parentTransform);
-
+        */
     }
 }

@@ -65,7 +65,7 @@ public class SpawnController : MonoBehaviour
             spawnedEnemy.transform.localRotation = Quaternion.identity;
             EnemyController ec = spawnedEnemy.GetComponent<EnemyController>();
             ec.enemyGoal = enemyGoal;
-            Destroy(spawnedEnemy, 10);
+            //Destroy(spawnedEnemy, 10);
             enemyCount += 1;
 
             if (!showEnemy) {
