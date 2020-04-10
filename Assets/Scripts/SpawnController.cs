@@ -63,7 +63,7 @@ public class SpawnController : MonoBehaviour
             spawnedEnemy.transform.localRotation = Quaternion.identity;
             EnemyController ec = spawnedEnemy.GetComponent<EnemyController>();
             ec.enemyGoal = enemyGoal;
-            Destroy(spawnedEnemy, 25);
+            //Destroy(spawnedEnemy, 25);
 
             if (!showEnemy) {
                 // If an object is parented to an image target after the target is lost,
