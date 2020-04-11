@@ -29,9 +29,4 @@ public class DifficultyToggle : MonoBehaviour
         }
     }
 
-    public void SelectToggle(int id)
-    {
-        var toggles = difficultyToggleGroup.GetComponentsInChildren<Toggle>();
-        toggles[id].isOn = true;
-    }
 }
