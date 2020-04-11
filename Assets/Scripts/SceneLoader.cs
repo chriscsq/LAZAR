@@ -34,8 +34,11 @@ public class SceneLoader : MonoBehaviour
         while (!operation.isDone)
         {
             UpdateProgressUI(operation.progress);
+
             yield return null;
         }
+
+        yield return new WaitForSeconds(1.5f);
 
         UpdateProgressUI(operation.progress);
         operation = null;
