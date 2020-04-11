@@ -6,23 +6,26 @@ using UnityEngine.SceneManagement;
 public class SettingButtonBehavior : MonoBehaviour
 {
 
-    public GameObject HomeScreen;
-    public GameObject SettingScreen;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField]
+    private GameObject HomeScreen;
+    [SerializeField]
+    private GameObject SettingScreen;
+    [SerializeField]
+    private GameObject SaveButton;
+    private string difficulty;
 
     public void BackToHome()
     {
         SettingScreen.SetActive(false);
         HomeScreen.SetActive(true);
+    }
+
+    public void SaveSettings() 
+    {
+        /* Get the values from the toggle group, and set it in the difficulty */
+    }
+
+    public string GetDifficulty() {
+        return difficulty;
     }
 }
