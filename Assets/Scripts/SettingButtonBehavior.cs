@@ -18,28 +18,30 @@ public class SettingButtonBehavior : MonoBehaviour
     [SerializeField]
     private ToggleGroup difficultyToggleGroup;
 
-    private void Start()
-    {
-        Debug.Log("Difficulty is set to: " + difficulty);
-    }
+
     public void BackToHome()
     {
         SettingScreen.SetActive(false);
         HomeScreen.SetActive(true);
     }
 
+    /* Get the values from the toggle group,
+     * sets in the difficulty */
+
     public void SaveSettings() 
     {
         difficulty = CurrentSelection.ToString();
-        /* Get the values from the toggle group, and set it in the difficulty */
         Debug.Log(CurrentSelection.ToString());
         SettingScreen.SetActive(false);
         HomeScreen.SetActive(true);
 
     }
 
-    public string GetDifficulty() {
-        return difficulty;
+    public string GetDifficulty {
+        get
+        {
+            return difficulty;
+        }
     }
 
 
