@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class MirrorInfo : MonoBehaviour
 {
-    public Color reflectionColour;
+    public Color reflectionColour = Color.red;
 }

@@ -309,6 +309,7 @@ GameObject:
   - component: {fileID: 452290313}
   - component: {fileID: 452290312}
   - component: {fileID: 452290311}
+  - component: {fileID: 452290314}
   m_Layer: 0
   m_Name: TestMirror
   m_TagString: Mirror
@@ -390,6 +391,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 452290309}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &452290314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 452290309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e0e51fe6b9ffb7429286dacf48f1660, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reflectionColour: {r: 1, g: 0, b: 0, a: 1}
 --- !u!21 &484290454
 Material:
   serializedVersion: 6
@@ -2051,6 +2065,7 @@ GameObject:
   - component: {fileID: 1425278862}
   - component: {fileID: 1425278861}
   - component: {fileID: 1425278860}
+  - component: {fileID: 1425278863}
   m_Layer: 0
   m_Name: TestMirror (1)
   m_TagString: Mirror
@@ -2132,6 +2147,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1425278858}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1425278863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1425278858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e0e51fe6b9ffb7429286dacf48f1660, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reflectionColour: {r: 1, g: 0, b: 0, a: 1}
 --- !u!43 &1432169755
 Mesh:
   m_ObjectHideFlags: 0

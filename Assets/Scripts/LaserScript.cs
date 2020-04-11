@@ -5,7 +5,8 @@ using UnityEngine;
 using System.Linq; // for the LastOrDefault() method;
 public class LaserScript : MonoBehaviour
 {
-    private LineRenderer line;
+    private LineRenderer thisLine;
+    private List<GameObject> additionaLineObjects;
     private Transform thisTransform;
 
     private int LINE_TERM_DIST = 1000; // Line length if it doesn't hit anything.
@@ -25,12 +26,15 @@ public class LaserScript : MonoBehaviour
         public Vector3 hitLocation;
         public Vector3 reflectionDir;
         public Power powerAfter;
+
+        public Color beamColour;
     }
     // Start is called before the first frame update
     void Start()
     {
-        line = GetComponent<LineRenderer>();
-        line.enabled = true;
+        thisLine = GetComponent<LineRenderer>();
+        additionaLineObjects = new List<GameObject>();
+        thisLine.enabled = true;
         thisTransform = GetComponent<Transform>();
         timer = 0;
 
@@ -55,20 +59,64 @@ public class LaserScript : MonoBehaviour
         firstBounce.powerAfter = Power.DEFAULT;
         firstBounce.hitLocation = thisTransform.position;
         firstBounce.reflectionDir = thisTransform.forward;
+        firstBounce.beamColour = Color.red; //UPDATE THIS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+        // Get the "abstract" reflection info
         bounces = FireLaserRecursive(firstBounce, 0);
 
-        int numPositions = 2 + 3*(bounces.Count - 2);
-        line.positionCount = numPositions;
 
-        line.SetPosition(0, bounces[0].hitLocation);
-        for(int bounceNum = 1, positionNum = 1; bounceNum < bounces.Count - 1; bounceNum += 1, positionNum += 3) {
+        // Once that abstract info is obtained, convert it to the LineRenderer implementation
+        LineRenderer currentRenderer = thisLine;
+        thisLine.positionCount = 1;
+        thisLine.SetPosition(0, bounces[0].hitLocation);
+        int nextAdditionalLineIndex = 0;
+        int positionNum = 1;
+        // Add the first line location
+        for(int bounceNum = 1; bounceNum < bounces.Count - 1; bounceNum ++) {
             Vector3 lastHitLoc = bounces[bounceNum - 1].hitLocation;
             Vector3 currentHitLoc = bounces[bounceNum].hitLocation;
-            line.SetPosition(positionNum, Vector3.MoveTowards(currentHitLoc, lastHitLoc, END_OF_SEGMENT_LENGTH));
-            line.SetPosition(positionNum + 1, currentHitLoc);
-            line.SetPosition(positionNum + 2, currentHitLoc);
+            Color lastCol = bounces[bounceNum - 1].beamColour;
+            Color currentCol = bounces[bounceNum].beamColour;
+
+            if (currentCol == lastCol) {
+                currentRenderer.positionCount += 3;
+                currentRenderer.SetPosition(positionNum, Vector3.MoveTowards(currentHitLoc, lastHitLoc, END_OF_SEGMENT_LENGTH));
+                currentRenderer.SetPosition(positionNum + 1, currentHitLoc);
+                currentRenderer.SetPosition(positionNum + 2, currentHitLoc);
+                positionNum += 3;
+            }
+            else {
+                // Terminate the line of the previous colour
+                currentRenderer.positionCount += 1;
+                currentRenderer.SetPosition(positionNum, currentHitLoc);
+                // Start a new line
+                if (nextAdditionalLineIndex >= additionaLineObjects.Count) {
+                    GameObject newLineStart = new GameObject();
+                    LineRenderer newLineRenderer = newLineStart.AddComponent(typeof(LineRenderer)) as LineRenderer;
+                    Transform newLineStartTransform = newLineStart.GetComponent<Transform>();
+                    newLineStartTransform.parent = thisTransform;
+                    newLineStartTransform.position = thisTransform.position;
+                    additionaLineObjects.Add(newLineStart);
+                }
+                currentRenderer = additionaLineObjects[nextAdditionalLineIndex].GetComponent<LineRenderer>();
+                nextAdditionalLineIndex++;
+                currentRenderer.positionCount = 1;
+                positionNum = 0;
+                currentRenderer.SetPosition(positionNum, currentHitLoc);
+                positionNum++;
+            }
         }
-        line.SetPosition(numPositions-1, bounces.Last().hitLocation);
+        // Add the very last laser position
+        currentRenderer.positionCount += 1;
+        currentRenderer.SetPosition(positionNum, bounces.Last().hitLocation);
+
+        // if additionalLineObjects has more objects (and, thus, more linerenderers) than needed, we should delete the remaining ones
+        if (nextAdditionalLineIndex < additionaLineObjects.Count) {
+            for(int i = nextAdditionalLineIndex; i < additionaLineObjects.Count; i++) {
+                Destroy(additionaLineObjects[i]);
+            }
+            additionaLineObjects.RemoveRange(nextAdditionalLineIndex, additionaLineObjects.Count - nextAdditionalLineIndex);
+        }
 
         yield return new WaitForEndOfFrame();
     }
@@ -93,6 +141,8 @@ public class LaserScript : MonoBehaviour
         RaycastHit hit;
 
         LaserBounce newBounce = new LaserBounce();
+
+        newBounce.beamColour = Color.red; //UPDATE THIS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
         List<LaserBounce> furtherBounces = new List<LaserBounce>();
 
@@ -119,15 +169,12 @@ public class LaserScript : MonoBehaviour
                 }
                 // Stuff for 
                 else{
-                    furtherBounces.Add(newBounce);
-
                     if (hit.collider.tag == "Enemy") {
                         EnemyController enemy = hit.collider.GetComponent<EnemyController>();
                         enemy.TakeDamage(0.5f);
-
-                        
-                        //Debug.Log("Enemy hit! Kapow!");
                     }
+
+                    furtherBounces.Add(newBounce);
                 }
             }
         }
