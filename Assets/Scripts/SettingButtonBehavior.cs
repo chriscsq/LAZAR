@@ -17,6 +17,8 @@ public class SettingButtonBehavior : MonoBehaviour
     private string difficulty;
     [SerializeField]
     private ToggleGroup difficultyToggleGroup;
+    [SerializeField]
+    private SettingScreenBehavior settingBehavior;
 
 
     public void BackToHome()
@@ -30,8 +32,9 @@ public class SettingButtonBehavior : MonoBehaviour
 
     public void SaveSettings() 
     {
-        difficulty = CurrentSelection.ToString();
-        Debug.Log(CurrentSelection.ToString());
+        settingBehavior.LevelDifficulty = CurrentSelection.ToString();
+       // difficulty = CurrentSelection.ToString();
+       // Debug.Log(CurrentSelection.ToString());
         SettingScreen.SetActive(false);
         HomeScreen.SetActive(true);
 

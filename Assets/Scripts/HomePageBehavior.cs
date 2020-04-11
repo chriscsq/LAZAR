@@ -13,7 +13,6 @@ public class HomePageBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Start(), homefully will set active to false");
         HomeScreen.SetActive(true);
         SettingScreen.SetActive(false);
         LoadingScreen.SetActive(false);

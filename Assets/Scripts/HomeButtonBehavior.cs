@@ -11,6 +11,8 @@ public class HomeButtonBehavior : MonoBehaviour
     private GameObject SettingScreen;
     [SerializeField]
     private GameObject LoadScreen;
+    [SerializeField]
+    private SettingScreenBehavior settingBehavior;
     
     // Start is called before the first frame update
     public void PlayButtonOnPress() 
@@ -24,5 +26,6 @@ public class HomeButtonBehavior : MonoBehaviour
     {
         HomeScreen.SetActive(false);
         SettingScreen.SetActive(true);
+        settingBehavior.SetCurrentDifficulty(settingBehavior.LevelDifficulty);
     }
 }
