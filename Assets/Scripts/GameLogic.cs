@@ -21,26 +21,27 @@ public class GameLogic : MonoBehaviour
     }
 
     [System.Serializable]
-    public struct EasyWave {
-        
+    public struct MidDif {
+        public float startTime;
+        public float spawnPeriod;
+        public SpawnController spawnPoint;
+        public SubwaveInfo[] subwaves;
     }
 
     [System.Serializable]
-    public struct MidWave
-    {
-
-    }
-
-    [System.Serializable]
-    public struct HardWave
-    {
-
+    public struct HardDif {
+        public float startTime;
+        public float spawnPeriod;
+        public SpawnController spawnPoint;
+        public SubwaveInfo[] subwaves;
     }
 
 
     public float WIN_DELAY_SECONDS = 3.0f; // Min delay between last enemy destruction and "winning" the game.
     public GameObject winMessage;
     public WaveInfo[] waves;
+    public MidDif[] midDifWaves;
+    public HardDif[] hardDifWaves;
 
     private float timer;
     private float nextWaveTime;
