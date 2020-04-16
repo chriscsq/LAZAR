@@ -403,7 +403,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e0e51fe6b9ffb7429286dacf48f1660, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  replacePreviousPower: 1
+  replacePreviousPower: 0
   reflectionPower: 0
 --- !u!21 &484290454
 Material:
@@ -1447,10 +1447,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showEnemy: 1
-  enemyToSpawn: {fileID: 7117845952033320867, guid: c11361b2c1ceb6445a0d46f20ffc4378,
-    type: 3}
   enemyGoal: {fileID: 660813702}
-  spawnPeriod: 2.5
   spawnRadius: 0.1
   groundBuffer: 0.01
 --- !u!136 &1014727154
@@ -2474,8 +2471,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1887537732}
   - component: {fileID: 1887537731}
+  - component: {fileID: 1887537733}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: GameController
   m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2512,6 +2510,42 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1887537733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1887537730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 696b2c4542bbd3544865a9d97987975a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waves:
+  - startTime: 5
+    spawnPeriod: 1
+    spawnPoint: {fileID: 1014727153}
+    subwaves:
+    - enemyType: {fileID: 7117845952033320867, guid: cebb2936fcdf5814e99551802c1222ad,
+        type: 3}
+      enemyCount: 1
+    - enemyType: {fileID: 7117845952033320867, guid: c11361b2c1ceb6445a0d46f20ffc4378,
+        type: 3}
+      enemyCount: 4
+    - enemyType: {fileID: 7117845952033320867, guid: cebb2936fcdf5814e99551802c1222ad,
+        type: 3}
+      enemyCount: 2
+  - startTime: 30
+    spawnPeriod: 3
+    spawnPoint: {fileID: 1014727153}
+    subwaves:
+    - enemyType: {fileID: 7117845952033320867, guid: c11361b2c1ceb6445a0d46f20ffc4378,
+        type: 3}
+      enemyCount: 4
+    - enemyType: {fileID: 7117845952033320867, guid: cebb2936fcdf5814e99551802c1222ad,
+        type: 3}
+      enemyCount: 3
 --- !u!1 &1892371696
 GameObject:
   m_ObjectHideFlags: 0

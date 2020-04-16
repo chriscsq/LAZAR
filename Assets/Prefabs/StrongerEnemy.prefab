@@ -261,7 +261,7 @@ GameObject:
   - component: {fileID: 286002331339133037}
   - component: {fileID: 6975770550813087503}
   m_Layer: 0
-  m_Name: TestEnemy
+  m_Name: StrongerEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -308,7 +308,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0a77abad18e95994b8591ea565a24c13, type: 2}
+  - {fileID: 2100000, guid: ba8e870690a2751468640df7b24be8fd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -357,10 +357,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthDeclineRates:
   - power: 0
-    healthImpact: 0.5
+    healthImpact: 0.125
   - power: 1
-    healthImpact: 0.5
-  health: 100
+    healthImpact: 8
+  health: 200
   enemyGoal: {fileID: 0}
   targetProximityThreshold: 0.1
   healthBar: {fileID: 1799622004}
