@@ -20,6 +20,23 @@ public class GameLogic : MonoBehaviour
         public SubwaveInfo[] subwaves;
     }
 
+    [System.Serializable]
+    public struct EasyWave {
+        
+    }
+
+    [System.Serializable]
+    public struct MidWave
+    {
+
+    }
+
+    [System.Serializable]
+    public struct HardWave
+    {
+
+    }
+
 
     public float WIN_DELAY_SECONDS = 3.0f; // Min delay between last enemy destruction and "winning" the game.
     public GameObject winMessage;
@@ -30,7 +47,7 @@ public class GameLogic : MonoBehaviour
     private int waveIndex;
     [SerializeField]
     SettingScreenBehavior settingScreenBehavior;
-    private int waveSize;
+    //private int waveSize;
 
 
     private GameState winState;
@@ -102,13 +119,13 @@ public class GameLogic : MonoBehaviour
         Debug.Log(difficulty);
         switch (difficulty) {
             case "Current: Easy":
-                waveSize = 3;
+               // waveSize = 3;
                 break;
             case "Current: Medium":
-                waveSize = 5;
+               // waveSize = 5;
                 break;
             case "Current: Hard":
-                waveSize = 7;
+               // waveSize = 7;
                 break;
         }
     }
