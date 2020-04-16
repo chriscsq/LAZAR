@@ -276,7 +276,7 @@ Transform:
   m_GameObject: {fileID: 7117845952033320867}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.0004144, y: 0.41, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_Children:
   - {fileID: 538670738}
   m_Father: {fileID: 0}
@@ -357,11 +357,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthDeclineRates:
   - power: 0
-    healthImpact: 0
-  - power: 0
-    healthImpact: 0
-  - power: 0
-    healthImpact: 0
+    healthImpact: 0.25
+  - power: 1
+    healthImpact: 2
   health: 100
   enemyGoal: {fileID: 0}
   targetProximityThreshold: 0.1

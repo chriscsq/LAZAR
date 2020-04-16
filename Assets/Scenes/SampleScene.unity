@@ -106,15 +106,15 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 0.05
-    agentHeight: 0.2
-    agentSlope: 57.1
-    agentClimb: 0.1
+    agentRadius: 0.075
+    agentHeight: 0.3
+    agentSlope: 54.1
+    agentClimb: 0.175
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
     minRegionArea: 1
     manualCellSize: 0
-    cellSize: 0.016666668
+    cellSize: 0.025
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
@@ -692,7 +692,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 607781010}
   m_LocalRotation: {x: 0, y: -0.7061187, z: 0, w: 0.70809346}
-  m_LocalPosition: {x: 0.998, y: 0, z: -1.957}
+  m_LocalPosition: {x: 2.31, y: 0, z: -2.455}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 996078781}
@@ -819,7 +819,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 660813701}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.049, y: 1.209, z: 0.161}
+  m_LocalPosition: {x: -1.321, y: 0.06, z: -1.359}
   m_LocalScale: {x: 0.12065, y: 0.12065, z: 0.2111375}
   m_Children: []
   m_Father: {fileID: 1684592619}
@@ -1137,12 +1137,12 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 63e884a4a00808548b0418a432f2e2a4,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 140
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 63e884a4a00808548b0418a432f2e2a4,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 140
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 63e884a4a00808548b0418a432f2e2a4,
         type: 3}
@@ -1428,7 +1428,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1014727151}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.326, y: 0.027, z: 0.279}
+  m_LocalPosition: {x: 1.63, y: 0.027, z: 0.279}
   m_LocalScale: {x: 0.301625, y: 0.00060325005, z: 0.301625}
   m_Children: []
   m_Father: {fileID: 1684592619}
@@ -1685,6 +1685,7 @@ LineRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 1d435004498045e428a12a7617ae4b65, type: 2}
+  - {fileID: 2100000, guid: 97925635a73eeb04fa564db44dab99e9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1897,13 +1898,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1425278858}
-  m_LocalRotation: {x: 0.14342014, y: 0.47451764, z: -0.07868478, w: 0.86491185}
-  m_LocalPosition: {x: 1.612, y: 0.322, z: -0.814}
+  m_LocalRotation: {x: 0, y: 0.48099643, z: 0, w: 0.8767226}
+  m_LocalPosition: {x: 2.93, y: 0.447, z: -1.37}
   m_LocalScale: {x: 0.8802624, y: 0.64110386, z: 0.07842249}
   m_Children: []
   m_Father: {fileID: 1684592619}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 18.830002, y: 57.501003, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 57.501003, z: 0}
 --- !u!65 &1425278860
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2496,7 +2497,7 @@ MonoBehaviour:
   - laserPower: 0
     laserColour: {r: 1, g: 0, b: 0.62704325, a: 0.6745098}
   - laserPower: 1
-    laserColour: {r: 0.018987417, g: 1, b: 0, a: 0}
+    laserColour: {r: 0.018987417, g: 1, b: 0, a: 0.6862745}
 --- !u!4 &1887537732
 Transform:
   m_ObjectHideFlags: 0
@@ -2535,7 +2536,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1892371696}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.9350376, y: 0, z: 1.1160126}
+  m_LocalPosition: {x: 2.284, y: -0.08, z: 1.1160126}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
   - {fileID: 1765827660}
