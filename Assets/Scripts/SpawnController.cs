@@ -29,11 +29,14 @@ public class SpawnController : MonoBehaviour
     private SubwaveInfo[] subwaveArray;
 
     
+
+    
     // Start is called before the first frame update
     void Start()
     {
         thisTransform = GetComponent<Transform>();
-        thisCollider = GetComponent<Collider>();        
+        thisCollider = GetComponent<Collider>();
+
     }
 
     // Update is called once per frame
@@ -42,7 +45,7 @@ public class SpawnController : MonoBehaviour
         if (subwaveArray != null && subwaveIndex < subwaveArray.Length) {
             timeSinceLastSpawn += Time.deltaTime;
             
-            if (timeSinceLastSpawn > spawnPeriod) {
+            if (timeSinceLastSpawn > spawnPeriod || (subwaveIndex == 0 && subwaveEnemiesSpawnedSoFar == 0)) {
                 timeSinceLastSpawn = 0.0f;
 
                 GameObject enemyToSpawn = subwaveArray[subwaveIndex].enemyType;
@@ -83,6 +86,7 @@ public class SpawnController : MonoBehaviour
                 if (subwaveEnemiesSpawnedSoFar >= subwaveArray[subwaveIndex].enemyCount) {
                     subwaveEnemiesSpawnedSoFar = 0;
                     subwaveIndex++;
+
                 }
             }
         }
@@ -94,5 +98,9 @@ public class SpawnController : MonoBehaviour
         subwaveEnemiesSpawnedSoFar = 0;
         subwaveArray = subwaves;
         timeSinceLastSpawn = 0.0f;
+    }
+
+    public bool DoneSpawningEnemies() {
+        return subwaveArray == null || subwaveIndex >= subwaveArray.Length;
     }
 }

@@ -357,7 +357,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthDeclineRates:
   - power: 0
-    healthImpact: 0.125
+    healthImpact: 5
   - power: 1
     healthImpact: 8
   health: 200

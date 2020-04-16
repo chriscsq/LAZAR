@@ -357,9 +357,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthDeclineRates:
   - power: 0
-    healthImpact: 0.5
+    healthImpact: 5
   - power: 1
-    healthImpact: 0.5
+    healthImpact: 5
   health: 100
   enemyGoal: {fileID: 0}
   targetProximityThreshold: 0.1
