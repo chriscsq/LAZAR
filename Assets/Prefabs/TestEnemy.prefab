@@ -355,6 +355,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 381e950dd3cf0c849981fb4d6747b271, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthDeclineRates:
+  - power: 0
+    healthImpact: 0
+  - power: 0
+    healthImpact: 0
+  - power: 0
+    healthImpact: 0
   health: 100
   enemyGoal: {fileID: 0}
   targetProximityThreshold: 0.1

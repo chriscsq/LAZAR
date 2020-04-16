@@ -6,7 +6,17 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
+    [System.Serializable]
+    public struct PowerHealthPairing {
+        public LaserPowers power;
+        public float healthImpact;    
+    }
+    // Unity does not expose Dictionaries in the inspector.
+    // Therefore, the following workaround is used: https://answers.unity.com/questions/642431/dictionary-in-inspector.html
+    private Dictionary<LaserPowers, float> healthDeclineRatesDict;
 
+    [SerializeField]
+    public PowerHealthPairing[] healthDeclineRates;
     public float health = 100;
     public Transform enemyGoal;
     /*[SerializeField]
@@ -20,12 +30,19 @@ public class EnemyController : MonoBehaviour
     private Transform thisTransform;
     private Transform parentTransform;
     private NavMeshAgent navMeshAgent;
+
+
     // Start is called before the first frame update
     void Start()
     {
         thisTransform = GetComponent<Transform>();
         parentTransform = thisTransform.parent.GetComponent<Transform>();
         navMeshAgent = GetComponent<NavMeshAgent>();
+        healthDeclineRatesDict = new Dictionary<LaserPowers, float>();
+
+        foreach(PowerHealthPairing p in healthDeclineRates) {
+            healthDeclineRatesDict[p.power] = p.healthImpact;
+        }
     }
 
     // Update is called once per frame
@@ -41,20 +58,26 @@ public class EnemyController : MonoBehaviour
         //Vector3 newDist = enemyGoal.localPosition - thisTransform.localPosition;
         if (locDiff.magnitude < targetProximityThreshold)
             Destroy(this.gameObject);
+
+        
         
         //thisTransform.Translate(nextMove, parentTransform);
 
     }
 
-    public void TakeDamage(float amount) 
+    public void TakeDamage(LaserPowers power) 
     {
-        health -= amount;
-        healthBar.fillAmount = health/100;
+        if (healthDeclineRatesDict.ContainsKey(power)) {
+            float amount = healthDeclineRatesDict[power];
+            health -= amount;
+            healthBar.fillAmount = health/100;
 
-        /* Maybe we can add a death animation  here */
-        if (health <= 0) 
-        {
-            Destroy(this.gameObject);
+            /* Maybe we can add a death animation  here */
+            if (health <= 0) 
+            {
+                Destroy(this.gameObject);
+            }
         }
+        
     }
 }

@@ -4,5 +4,6 @@ using UnityEngine;
 
 public class MirrorInfo : MonoBehaviour
 {
-    public Color reflectionColour = Color.red;
+    public bool replacePreviousPower = true;
+    public LaserPowers reflectionPower = LaserPowers.DEFAULT;
 }
