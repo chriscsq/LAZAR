@@ -28,6 +28,9 @@ public class GameLogic : MonoBehaviour
     private float timer;
     private float nextWaveTime;
     private int waveIndex;
+    [SerializeField]
+    SettingScreenBehavior settingScreenBehavior;
+    private int waveSize;
 
 
     private GameState winState;
@@ -47,6 +50,7 @@ public class GameLogic : MonoBehaviour
         winState = GameState.IN_PROGRESS;
 
         winMessage.SetActive(false);
+        handleDifficulty();
 
     }
 
@@ -91,5 +95,21 @@ public class GameLogic : MonoBehaviour
             }
         }
         return gameWon;
+    }
+
+    public void handleDifficulty() {
+        string difficulty = settingScreenBehavior.GetCurrentDifficulty();
+        Debug.Log(difficulty);
+        switch (difficulty) {
+            case "Current: Easy":
+                waveSize = 3;
+                break;
+            case "Current: Medium":
+                waveSize = 5;
+                break;
+            case "Current: Hard":
+                waveSize = 7;
+                break;
+        }
     }
 }

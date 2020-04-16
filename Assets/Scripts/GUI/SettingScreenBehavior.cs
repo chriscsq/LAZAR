@@ -27,6 +27,10 @@ public class SettingScreenBehavior : MonoBehaviour
 
     }
 
+    public string GetCurrentDifficulty() {
+        return currentDifficulty.text;
+    }
+
     /* Changes the text in Current difficulty */
     public void SetCurrentDifficulty(string difficulty)
     {

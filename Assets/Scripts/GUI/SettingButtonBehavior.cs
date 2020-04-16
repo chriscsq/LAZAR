@@ -33,8 +33,8 @@ public class SettingButtonBehavior : MonoBehaviour
     public void SaveSettings() 
     {
         settingBehavior.LevelDifficulty = CurrentSelection.ToString();
-       // difficulty = CurrentSelection.ToString();
-       // Debug.Log(CurrentSelection.ToString());
+        difficulty = CurrentSelection.ToString();
+        Debug.Log(CurrentSelection.ToString());
         SettingScreen.SetActive(false);
         HomeScreen.SetActive(true);
 
