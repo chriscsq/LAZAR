@@ -2,15 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
+    [System.Serializable]
+    public struct PowerHealthPairing {
+        public LaserPowers power;
+        public float healthImpact;    
+    }
+    // Unity does not expose Dictionaries in the inspector.
+    // Therefore, the following workaround is used: https://answers.unity.com/questions/642431/dictionary-in-inspector.html
+    private Dictionary<LaserPowers, float> healthDeclineRatesDict;
 
-    public float health = 100;
-    public Transform enemyGoal;
     [SerializeField]
-    private float speed = 0.5f;
+    public PowerHealthPairing[] healthDeclineRates;
+    public float health = 100;
+
+    [HideInInspector] //This Transform is never set directly by the designer; just by the spawn point
+    public Transform enemyGoal;
+    /*[SerializeField]
+    private float speed = 0.5f;*/
     [SerializeField]
     private float targetProximityThreshold = 0.005f;
 
@@ -18,43 +30,61 @@ public class EnemyController : MonoBehaviour
     public Image healthBar;
 
     private Transform thisTransform;
-    private Transform parentTransform;
+    //private Transform parentTransform;
+    private NavMeshAgent navMeshAgent;
+
+
     // Start is called before the first frame update
     void Start()
     {
         thisTransform = GetComponent<Transform>();
-        parentTransform = thisTransform.parent.GetComponent<Transform>();
+        //parentTransform = thisTransform.parent.GetComponent<Transform>();
+        navMeshAgent = GetComponent<NavMeshAgent>();
+        healthDeclineRatesDict = new Dictionary<LaserPowers, float>();
+
+        foreach(PowerHealthPairing p in healthDeclineRates) {
+            healthDeclineRatesDict[p.power] = p.healthImpact;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (enemyGoal != null) {
+            navMeshAgent.SetDestination(enemyGoal.position);
         
-        Vector3 locDiff = enemyGoal.localPosition - thisTransform.localPosition;
-        Vector3 travelDir = Vector3.Normalize(locDiff);
-        Vector3 nextMove = speed * Time.deltaTime * travelDir;
+        /*
+            Vector3 locDiff = enemyGoal.localPosition - thisTransform.localPosition;
+            //Vector3 travelDir = Vector3.Normalize(locDiff);
+            //Vector3 nextMove = speed * Time.deltaTime * travelDir;
+            
+
+            //Vector3 newDist = enemyGoal.localPosition - thisTransform.localPosition;
+            if (locDiff.magnitude < targetProximityThreshold)
+                Destroy(this.gameObject);
+        */
+        }
+
         
-        // If we're very close to the goal, we'll slow down.
-        // This is to prevent oscillation at the goal.
-        // It's not the best fix (should use lerp), but should be fine for this prototype.
-        Vector3 newDist = enemyGoal.localPosition - thisTransform.localPosition;
-        if (locDiff.magnitude < targetProximityThreshold)
-            nextMove = locDiff.magnitude * nextMove;
         
-        thisTransform.Translate(nextMove, parentTransform);
+        //thisTransform.Translate(nextMove, parentTransform);
 
     }
 
-    public void TakeDamage(float amount) 
+    public void TakeDamage(LaserPowers power) 
     {
-        health -= amount;
-        healthBar.fillAmount = health/100;
+        if (healthDeclineRatesDict.ContainsKey(power)) {
+            float amount = healthDeclineRatesDict[power];
+            health -= amount;
+            healthBar.fillAmount = health/100;
 
-        /* Maybe we can add a death animation  here */
-        if (health <= 0) 
-        {
-            Destroy(this.gameObject);
+            /* Maybe we can add a death animation  here */
+            if (health <= 0) 
+            {
+                Destroy(this.gameObject);
+            }
         }
+        
     }
 
     private void OnTriggerEnter(Collider other) 
@@ -64,6 +94,7 @@ public class EnemyController : MonoBehaviour
             Debug.Log("Collide");
             Treasure chest = other.gameObject.GetComponent<Treasure>();
             chest.TakeDamage(5.0f);
+            Destroy(gameObject);
         }
     }
 }

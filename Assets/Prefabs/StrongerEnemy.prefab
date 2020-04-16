@@ -260,9 +260,9 @@ GameObject:
   - component: {fileID: 1320167434976963709}
   - component: {fileID: 286002331339133037}
   - component: {fileID: 6975770550813087503}
-  - component: {fileID: -3569345064413690900}
+  - component: {fileID: 7361808490525350021}
   m_Layer: 0
-  m_Name: TestEnemy
+  m_Name: StrongerEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -309,7 +309,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0a77abad18e95994b8591ea565a24c13, type: 2}
+  - {fileID: 2100000, guid: ba8e870690a2751468640df7b24be8fd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -360,8 +360,8 @@ MonoBehaviour:
   - power: 0
     healthImpact: 5
   - power: 1
-    healthImpact: 5
-  health: 100
+    healthImpact: 8
+  health: 200
   enemyGoal: {fileID: 0}
   targetProximityThreshold: 1
   healthBar: {fileID: 1799622004}
@@ -375,7 +375,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 0.25
+  m_Speed: 0.125
   m_Acceleration: 0.8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -387,7 +387,7 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!54 &-3569345064413690900
+--- !u!54 &7361808490525350021
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
