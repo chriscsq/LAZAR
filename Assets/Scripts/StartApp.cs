@@ -2,18 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OnLoad : MonoBehaviour
+public class StartApp : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
     {
-        GameObject load = GameObject.Find("SceneLoader");
-        load.SetActive(false);
+        Debug.Log("open");
         GameObject screen = GameObject.Find("WelcomeScreen");
+        screen.SetActive(false);
         GameObject overlay = GameObject.Find("InGameOverlay");
-        screen.SetActive(true);
         overlay.SetActive(false);
-
     }
 
     // Update is called once per frame

@@ -22,7 +22,6 @@ public class GameScreenButtonBehavior : MonoBehaviour
     /* Interaction with play button */
     public void BeginPlayGame()
 	{
-        Debug.Log("Play game started");
         WelcomeScreen.SetActive(false);
         InGameOverlay.SetActive(true);
         MenuPanel.SetActive(false);

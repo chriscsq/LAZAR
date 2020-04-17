@@ -14,7 +14,7 @@ public class SceneLoader : MonoBehaviour
     private Canvas canvas;
 
 
-    private void Awake()
+    private void Start()
     {
         canvas = GetComponentInChildren<Canvas>(true);
         DontDestroyOnLoad(gameObject);
@@ -40,10 +40,7 @@ public class SceneLoader : MonoBehaviour
 
         UpdateProgressUI(operation.progress);
         operation = null;
-        Debug.Log("Setactive false");
         canvas.gameObject.SetActive(false);
-        Debug.Log("Setactive false2");
-
 
     }
 

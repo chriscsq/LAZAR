@@ -2,18 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using DG.Tweening;
+using System.Linq;
+
 
 public class HomeButtonBehavior : MonoBehaviour
 {
     [SerializeField]
-    private GameObject HomeScreen;
+    private GameObject HomeScreen, LoadScreen;
+
     [SerializeField]
-    private GameObject SettingScreen;
+    private RectTransform HomeTransform;
+
     [SerializeField]
-    private GameObject LoadScreen;
+    private GameObject SaveButton;
+    private string difficulty;
     [SerializeField]
-    private SettingScreenBehavior settingBehavior;
-    
+    private ToggleGroup difficultyToggleGroup;
+    [SerializeField]
+    private HomePageBehavior settingBehavior;
+
     // Start is called before the first frame update
     public void PlayButtonOnPress() 
     {
@@ -24,8 +33,49 @@ public class HomeButtonBehavior : MonoBehaviour
 
     public void SettingButtonOnPress() 
     {
+        HomeTransform.DOAnchorPos(new Vector2(-1533, 2637.4f), 0.75f);
+        /*
         HomeScreen.SetActive(false);
-        SettingScreen.SetActive(true);
         settingBehavior.SetCurrentDifficulty(settingBehavior.LevelDifficulty);
+        */
+        settingBehavior.SetCurrentDifficulty(settingBehavior.LevelDifficulty);
+        Debug.Log(difficulty);
+    }
+
+
+    public void BackToHome()
+    {
+        HomeTransform.DOAnchorPos(new Vector2(1010, 2637.4f), 0.75f);
+    }
+
+    /* Get the values from the toggle group,
+     * sets in the difficulty */
+
+    public void SaveSettings()
+    {
+        settingBehavior.LevelDifficulty = CurrentSelection.ToString();
+        // difficulty = CurrentSelection.ToString();
+        // Debug.Log(CurrentSelection.ToString());
+        HomeTransform.DOAnchorPos(new Vector2(1010, 2637.4f), 0.75f);
+
+    }
+
+    public string GetDifficulty
+    {
+        get
+        {
+            return difficulty;
+        }
+    }
+
+
+    public Toggle CurrentSelection
+    {
+        get
+        {
+            Debug.Log(difficultyToggleGroup.ActiveToggles().FirstOrDefault());
+            return difficultyToggleGroup.ActiveToggles().FirstOrDefault();
+
+        }
     }
 }
