@@ -17,32 +17,31 @@ public class HomeButtonBehavior : MonoBehaviour
 
     [SerializeField]
     private GameObject SaveButton;
-    private string difficulty;
     [SerializeField]
     private ToggleGroup difficultyToggleGroup;
     [SerializeField]
     private HomePageBehavior settingBehavior;
+
+    void Start() {
+        Screen.orientation = ScreenOrientation.Portrait;
+    }
 
     // Start is called before the first frame update
     public void PlayButtonOnPress() 
     {
         HomeScreen.GetComponent<Canvas>().enabled = false;
         LoadScreen.SetActive(true);
-        Debug.Log("your difficulty is " + settingBehavior.LevelDifficulty);
         FindObjectOfType<SceneLoader>().LoadScene("GameScene");
-
-        Screen.orientation = ScreenOrientation.Portrait;
     }
 
     public void SettingButtonOnPress() 
     {
+        settingBehavior.UpdateDifficultyText();
         HomeTransform.DOAnchorPos(new Vector2(-1533, 2637.4f), 0.75f);
         /*
         HomeScreen.SetActive(false);
         settingBehavior.SetCurrentDifficulty(settingBehavior.LevelDifficulty);
         */
-        settingBehavior.SetCurrentDifficulty(settingBehavior.LevelDifficulty);
-        Debug.Log(difficulty);
     }
 
 
@@ -54,22 +53,15 @@ public class HomeButtonBehavior : MonoBehaviour
     /* Get the values from the toggle group,
      * sets in the difficulty */
 
-    public void SaveSettings()
+    public void LeaveSettings()
     {
-        settingBehavior.LevelDifficulty = CurrentSelection.ToString();
         // difficulty = CurrentSelection.ToString();
         // Debug.Log(CurrentSelection.ToString());
         HomeTransform.DOAnchorPos(new Vector2(1010, 2637.4f), 0.75f);
 
     }
 
-    public string GetDifficulty
-    {
-        get
-        {
-            return difficulty;
-        }
-    }
+
 
 
     public Toggle CurrentSelection

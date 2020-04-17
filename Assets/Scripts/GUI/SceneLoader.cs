@@ -17,7 +17,7 @@ public class SceneLoader : MonoBehaviour
 
     private void Start()
     {
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
     }
 
     public void LoadScene(string sceneName)

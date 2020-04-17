@@ -938,7 +938,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 696b2c4542bbd3544865a9d97987975a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugDifficulty: 0
   WIN_DELAY_SECONDS: 3
   winMessage: {fileID: 564206878}
   waves:
@@ -948,10 +947,7 @@ MonoBehaviour:
     subwaves:
     - enemyType: {fileID: 8748207112882101966, guid: b2ab7861b5aff0f4795c56f8ad70a880,
         type: 3}
-      enemyCount: 4
-    - enemyType: {fileID: 8748207112882101966, guid: eac2bb0d12ebcb248bfebd81e0a3026f,
-        type: 3}
-      enemyCount: 2
+      enemyCount: 1
   medDifWaves:
   - startTime: 4
     spawnPeriod: 0.5
@@ -959,10 +955,10 @@ MonoBehaviour:
     subwaves:
     - enemyType: {fileID: 8748207112882101966, guid: b2ab7861b5aff0f4795c56f8ad70a880,
         type: 3}
-      enemyCount: 6
+      enemyCount: 1
     - enemyType: {fileID: 8748207112882101966, guid: eac2bb0d12ebcb248bfebd81e0a3026f,
         type: 3}
-      enemyCount: 4
+      enemyCount: 1
   hardDifWaves:
   - startTime: 3
     spawnPeriod: 0.5
@@ -970,10 +966,11 @@ MonoBehaviour:
     subwaves:
     - enemyType: {fileID: 8748207112882101966, guid: b2ab7861b5aff0f4795c56f8ad70a880,
         type: 3}
-      enemyCount: 10
+      enemyCount: 3
     - enemyType: {fileID: 8748207112882101966, guid: eac2bb0d12ebcb248bfebd81e0a3026f,
         type: 3}
-      enemyCount: 6
+      enemyCount: 2
+  debugDifficulty: 0
   settingsScreen: {fileID: 0}
 --- !u!1 &506234328
 GameObject:

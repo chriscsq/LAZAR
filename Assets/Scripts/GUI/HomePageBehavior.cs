@@ -18,54 +18,48 @@ public class HomePageBehavior : MonoBehaviour
     private TMPro.TextMeshProUGUI currentDifficulty;
 
 
-    private string _difficulty;
-
 
     // Start is called before the first frame update
     void Start()
     {
-        DontDestroyOnLoad(this.gameObject);
+        //DontDestroyOnLoad(this.gameObject);
         LoadingScreen.SetActive(false);
 
         HomeScreen.SetActive(true);
+        if(GameSettings.Difficulty == GameDifficulty.UNSET) GameSettings.Difficulty = GameDifficulty.EASY;
     }
 
-    public string LevelDifficulty
-    {
-        get
-        {
-            return _difficulty;
-        }
-        set
-        {
-            _difficulty = value;
-        }
-
+    public void SetEasy(bool wasItSet) {
+        if (wasItSet) SetCurrentDifficulty(GameDifficulty.EASY);
     }
 
+    public void SetMedium(bool wasItSet) {
+        if (wasItSet) SetCurrentDifficulty(GameDifficulty.MEDIUM);
+    }
+    public void SetHard(bool wasItSet) {
+        if (wasItSet) SetCurrentDifficulty(GameDifficulty.HARD);
+    }
     /* Changes the text in Current difficulty */
-    public void SetCurrentDifficulty(string difficulty)
+    private void SetCurrentDifficulty(GameDifficulty difficulty)
     {
-        var toggles = difficultyToggleGroup.GetComponentsInChildren<Toggle>();
-        // Toggles right now has a length of 0, find out why
-        Debug.Log("test");
-        switch (difficulty)
+        GameSettings.Difficulty = difficulty;
+        UpdateDifficultyText();
+    }
+
+    public void UpdateDifficultyText() {
+        switch (GameSettings.Difficulty)
         {
-            case "EasyToggle (UnityEngine.UI.Toggle)":
-                currentDifficulty.text = "Current: Easy";
-                break;
-            case "MediumToggle (UnityEngine.UI.Toggle)":
-                currentDifficulty.text = "Current: Medium";
-                break;
-            case "HardToggle (UnityEngine.UI.Toggle)":
+            case GameDifficulty.HARD:
                 currentDifficulty.text = "Current: Hard";
+                break;
+            case GameDifficulty.MEDIUM:
+                currentDifficulty.text = "Current: Medium";
                 break;
             default:
                 currentDifficulty.text = "Current: Easy";
                 break;
         }
     }
-
     public string test()
     {
         return "test";

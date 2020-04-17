@@ -11,11 +11,6 @@ public class GameLogic : MonoBehaviour
         UNSTARTED, PAUSED, IN_PROGRESS, WON, LOST
     } 
 
-    public enum DebugDifficulty{
-        EASY, MEDIUM, HARD
-    }
-
-    public DebugDifficulty debugDifficulty;
 
 
     [System.Serializable]
@@ -57,7 +52,9 @@ public class GameLogic : MonoBehaviour
     private float hardNextWaveTime;
     private int hardWaveIndex;
     bool triggerE, triggerM, triggerH = false;
-    private string difficulty;
+    private GameDifficulty difficulty;
+    public GameDifficulty debugDifficulty;
+
 
     [HideInInspector]
     public GameObject settingsScreen;
@@ -83,39 +80,31 @@ public class GameLogic : MonoBehaviour
         nextWaveTime = waves[0].startTime;
         medNextWaveTime = medDifWaves[0].startTime;
         hardNextWaveTime = hardDifWaves[0].startTime;
+        
+        difficulty = GameSettings.Difficulty;
 
-        settingsScreen = GameObject.FindGameObjectWithTag("HomeScreen");
-        if (settingsScreen != null) {
-            difficulty =  settingsScreen.GetComponent<HomePageBehavior>().LevelDifficulty;
-        }
-        else {
-            switch (debugDifficulty) {
-                case DebugDifficulty.EASY:
-                    difficulty = "EasyToggle (UnityEngine.UI.Toggle)";
-                    break;
-                case DebugDifficulty.HARD:
-                    difficulty = "HardToggle (UnityEngine.UI.Toggle)";
-                    break;
-                default:
-                    difficulty = "MediumToggle (UnityEngine.UI.Toggle)";
-                    break;
-            }
-            difficulty = "MediumToggle (UnityEngine.UI.Toggle)"; // For editor convenience.
+        if (GameSettings.Difficulty == GameDifficulty.UNSET && Application.isEditor)
+        {
+            difficulty = debugDifficulty;
         }
 
         switch (difficulty)
         {
-            case "EasyToggle (UnityEngine.UI.Toggle)":
+            case GameDifficulty.EASY:
                 triggerE = true;
+                Debug.Log("Using difficulty EASY");
                 break;
-            case "MediumToggle (UnityEngine.UI.Toggle)":
+            case GameDifficulty.MEDIUM:
                 triggerM = true;
+                Debug.Log("Using difficulty MEDIUM");
                 break;
-            case "HardToggle (UnityEngine.UI.Toggle)":
+            case GameDifficulty.HARD:
                 triggerH = true;
+                Debug.Log("Using difficulty HARD");
                 break;
             default:
                 triggerE = true;
+                Debug.Log("Using difficulty DEFAULT/EASY");
                 break;
         }
 
