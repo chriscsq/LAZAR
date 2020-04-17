@@ -25,11 +25,13 @@ public class GameScreenButtonBehavior : MonoBehaviour
         WelcomeScreen.SetActive(false);
         InGameOverlay.SetActive(true);
         MenuPanel.SetActive(false);
+        Screen.orientation = ScreenOrientation.AutoRotation;
 	}
 
     /* Interaction with "X" on top right */
     public void MenuPanelOnClick()
     {
+        Screen.orientation = ScreenOrientation.Portrait;
         MenuPanel.SetActive(true);
     }
 
@@ -43,5 +45,6 @@ public class GameScreenButtonBehavior : MonoBehaviour
     public void BackButtonOnClick()
     {
         MenuPanel.SetActive(false);
+        Screen.orientation = ScreenOrientation.AutoRotation;
     }
 }

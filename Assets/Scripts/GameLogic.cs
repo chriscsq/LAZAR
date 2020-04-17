@@ -8,8 +8,14 @@ public class GameLogic : MonoBehaviour
 {
     
     private enum GameState{
-        IN_PROGRESS, WON, LOST
+        UNSTARTED, PAUSED, IN_PROGRESS, WON, LOST
     } 
+
+    public enum DebugDifficulty{
+        EASY, MEDIUM, HARD
+    }
+
+    public DebugDifficulty debugDifficulty;
 
 
     [System.Serializable]
@@ -46,10 +52,8 @@ public class GameLogic : MonoBehaviour
     private float timer;
     private float nextWaveTime;
     private int waveIndex;
-    private float medTimer;
     private float medNextWaveTime;
     private int medWaveIndex;
-    private float hardTimer;
     private float hardNextWaveTime;
     private int hardWaveIndex;
     bool triggerE, triggerM, triggerH = false;
@@ -61,6 +65,7 @@ public class GameLogic : MonoBehaviour
 
 
     private GameState winState;
+    //private GameState lastUnpausedState;
 
     private float winAnnounceTime;
 
@@ -73,14 +78,30 @@ public class GameLogic : MonoBehaviour
         medDifWaves = medDifWaves.OrderBy(o => o.startTime).ToArray();
         hardDifWaves = hardDifWaves.OrderBy(o => o.startTime).ToArray();
 
-        timer = medTimer = hardTimer =  0.0f;
+        timer = 0.0f;
         waveIndex = medWaveIndex = hardWaveIndex = 0;
         nextWaveTime = waves[0].startTime;
         medNextWaveTime = medDifWaves[0].startTime;
         hardNextWaveTime = hardDifWaves[0].startTime;
 
         settingsScreen = GameObject.FindGameObjectWithTag("HomeScreen");
-        difficulty =  settingsScreen.GetComponent<HomePageBehavior>().LevelDifficulty;
+        if (settingsScreen != null) {
+            difficulty =  settingsScreen.GetComponent<HomePageBehavior>().LevelDifficulty;
+        }
+        else {
+            switch (debugDifficulty) {
+                case DebugDifficulty.EASY:
+                    difficulty = "EasyToggle (UnityEngine.UI.Toggle)";
+                    break;
+                case DebugDifficulty.HARD:
+                    difficulty = "HardToggle (UnityEngine.UI.Toggle)";
+                    break;
+                default:
+                    difficulty = "MediumToggle (UnityEngine.UI.Toggle)";
+                    break;
+            }
+            difficulty = "MediumToggle (UnityEngine.UI.Toggle)"; // For editor convenience.
+        }
 
         switch (difficulty)
         {
@@ -98,7 +119,8 @@ public class GameLogic : MonoBehaviour
                 break;
         }
 
-        winState = GameState.IN_PROGRESS;
+        winState = GameState.UNSTARTED;
+        //lastUnpausedState = GameState.IN_PROGRESS;
 
         winMessage.SetActive(false);
 
@@ -107,17 +129,20 @@ public class GameLogic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (triggerE)
-            startEasyWave();
-        else if (triggerM)
-            startMedWave();
-        else if (triggerH)
-            startHardWave();
-
-
-        TestIfGameWon();
-
-        if(winState == GameState.WON && Time.time >= winAnnounceTime) winMessage.SetActive(true);
+        if(winState == GameState.IN_PROGRESS) {
+            if (triggerE)
+                startEasyWave();
+            else if (triggerM)
+                startMedWave();
+            else if (triggerH)
+                startHardWave();
+            
+            TestIfGameWon();
+            
+            //lastUnpausedState = winState;
+            
+            if(winState == GameState.WON && Time.time >= winAnnounceTime) winMessage.SetActive(true);
+        }
     }
 
     public bool TestIfGameWon() {
@@ -162,8 +187,8 @@ public class GameLogic : MonoBehaviour
 
     private void startMedWave() {
         // If Pausing is ever implemented, can move most of the below into a block of if(!paused){...}
-        medTimer += Time.deltaTime;
-        if (medTimer > medNextWaveTime && medWaveIndex < medDifWaves.Length && winState == GameState.IN_PROGRESS)
+        timer += Time.deltaTime;
+        if (timer > medNextWaveTime && medWaveIndex < medDifWaves.Length && winState == GameState.IN_PROGRESS)
         {
             MedDif nextWave = medDifWaves[medWaveIndex];
             SpawnController sc = nextWave.spawnPoint;
@@ -179,8 +204,8 @@ public class GameLogic : MonoBehaviour
     }
     private void startHardWave() {
         // If Pausing is ever implemented, can move most of the below into a block of if(!paused){...}
-        hardTimer += Time.deltaTime;
-        if (hardTimer > hardNextWaveTime && hardWaveIndex < hardDifWaves.Length && winState == GameState.IN_PROGRESS)
+        timer += Time.deltaTime;
+        if (timer > hardNextWaveTime && hardWaveIndex < hardDifWaves.Length && winState == GameState.IN_PROGRESS)
         {
             HardDif nextWave = hardDifWaves[hardWaveIndex];
             SpawnController sc = nextWave.spawnPoint;
@@ -193,5 +218,20 @@ public class GameLogic : MonoBehaviour
                 hardNextWaveTime = hardDifWaves[hardWaveIndex].startTime;
             }
         }
+    }
+
+    public void Pause() {
+        /*lastUnpausedState = winState;
+        winState = GameState.PAUSED;*/
+        Debug.Log("Implement pausing some time in the future.");
+    }
+
+    public void Unpause() {
+        //winState = lastUnpausedState;
+        Debug.Log("Implement unpausing at some time in the future.");
+    }
+
+    public void StartGame() {
+        winState = GameState.IN_PROGRESS;
     }
 }

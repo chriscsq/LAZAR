@@ -30,6 +30,8 @@ public class HomeButtonBehavior : MonoBehaviour
         LoadScreen.SetActive(true);
         Debug.Log("your difficulty is " + settingBehavior.LevelDifficulty);
         FindObjectOfType<SceneLoader>().LoadScene("GameScene");
+
+        Screen.orientation = ScreenOrientation.Portrait;
     }
 
     public void SettingButtonOnPress() 

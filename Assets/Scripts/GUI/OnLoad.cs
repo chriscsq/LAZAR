@@ -11,7 +11,7 @@ public class OnLoad : MonoBehaviour
     void Start()
     {
         GameObject load = GameObject.Find("SceneLoader");
-        load.SetActive(false);
+        if(load != null) load.SetActive(false);
         welcome.SetActive(true);
         overlay.SetActive(false);
 
