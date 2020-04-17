@@ -571,6 +571,19 @@ MonoBehaviour:
     - enemyType: {fileID: 8748207112882101966, guid: eac2bb0d12ebcb248bfebd81e0a3026f,
         type: 3}
       enemyCount: 2
+  - startTime: 30
+    spawnPeriod: 1
+    spawnPoint: {fileID: 858371091}
+    subwaves:
+    - enemyType: {fileID: 8748207112882101966, guid: b2ab7861b5aff0f4795c56f8ad70a880,
+        type: 3}
+      enemyCount: 1
+    - enemyType: {fileID: 8748207112882101966, guid: eac2bb0d12ebcb248bfebd81e0a3026f,
+        type: 3}
+      enemyCount: 7
+    - enemyType: {fileID: 8748207112882101966, guid: b2ab7861b5aff0f4795c56f8ad70a880,
+        type: 3}
+      enemyCount: 7
 --- !u!1 &506234328
 GameObject:
   m_ObjectHideFlags: 0
@@ -3112,8 +3125,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1892371696}
   m_LocalRotation: {x: 0, y: 0.9332046, z: 0, w: 0.35934544}
-  m_LocalPosition: {x: 1.645, y: -0.089999996, z: -3.66}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalPosition: {x: 0.49, y: 0.06, z: -2.5}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_Children:
   - {fileID: 1765827660}
   - {fileID: 1365512940}
