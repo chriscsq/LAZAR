@@ -136,37 +136,7 @@ public class GameLogic : MonoBehaviour
         }
     }
 
-    public void SetDifficulty()
-    {
-        settingsScreen = GameObject.FindGameObjectWithTag("HomeScreen");
-        difficulty = settingsScreen.GetComponent<HomePageBehavior>().LevelDifficulty;
-
-        switch (difficulty)
-        {
-            case "EasyToggle (UnityEngine.UI.Toggle)":
-                Debug.Log("difficulty is : " + difficulty);
-
-                triggerE = true;
-                triggerM = triggerH = false;
-                break;
-            case "MediumToggle (UnityEngine.UI.Toggle)":
-                Debug.Log("difficulty is : " + difficulty);
-
-                triggerM = true;
-                triggerE = triggerH = false;
-                break;
-            case "HardToggle (UnityEngine.UI.Toggle)":
-                Debug.Log("difficulty is : " + difficulty);
-
-                triggerH = true;
-                triggerE = triggerM = false;
-                break;
-            default:
-                triggerE = true;
-                triggerM = triggerH = false;
-                break;
-        }
-    }
+    
 
     public bool TestIfGameWon() {
         if (winState == GameState.WON) return true;
