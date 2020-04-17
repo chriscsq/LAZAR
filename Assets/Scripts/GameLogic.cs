@@ -76,14 +76,12 @@ public class GameLogic : MonoBehaviour
         winState = GameState.IN_PROGRESS;
 
         winMessage.SetActive(false);
-        //handleDifficulty();
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        //startEasyWave();
         handleDifficulty();
 
         TestIfGameWon();
@@ -167,18 +165,18 @@ public class GameLogic : MonoBehaviour
     }
     private void startHardWave() {
         // If Pausing is ever implemented, can move most of the below into a block of if(!paused){...}
-        timer += Time.deltaTime;
-        if (timer > nextWaveTime && waveIndex < waves.Length && winState == GameState.IN_PROGRESS)
+        hardTimer += Time.deltaTime;
+        if (hardTimer > hardNextWaveTime && hardWaveIndex < hardDifWaves.Length && winState == GameState.IN_PROGRESS)
         {
-            WaveInfo nextWave = waves[waveIndex];
+            HardDif nextWave = hardDifWaves[hardWaveIndex];
             SpawnController sc = nextWave.spawnPoint;
 
             sc.StartWave(nextWave.spawnPeriod, nextWave.subwaves);
 
-            waveIndex++;
-            if (waveIndex < waves.Length)
+            hardWaveIndex++;
+            if (hardWaveIndex < hardDifWaves.Length)
             {
-                nextWaveTime = waves[waveIndex].startTime;
+                hardNextWaveTime = hardDifWaves[hardWaveIndex].startTime;
             }
         }
     }
