@@ -11,12 +11,12 @@ public class SceneLoader : MonoBehaviour
     private Slider slider;
 
     private AsyncOperation operation;
+    [SerializeField]
     private Canvas canvas;
 
 
-    private void Awake()
+    private void Start()
     {
-        canvas = GetComponentInChildren<Canvas>(true);
         DontDestroyOnLoad(gameObject);
     }
 
@@ -37,8 +37,6 @@ public class SceneLoader : MonoBehaviour
 
             yield return null;
         }
-
-        yield return new WaitForSeconds(1.5f);
 
         UpdateProgressUI(operation.progress);
         operation = null;
