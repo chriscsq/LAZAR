@@ -6,12 +6,8 @@ using UnityEngine.SceneManagement;
 public class GameScreenButtonBehavior : MonoBehaviour
 {
     [SerializeField]
-    private GameObject WelcomeScreen;
-    [SerializeField]
-    private GameObject InGameOverlay;
-    [SerializeField]
-    private GameObject MenuPanel;
-
+    private GameObject WelcomeScreen, InGameOverlay, MenuPanel;
+    [SerializeField] GameLogic game;
     /* Interaction with the quit button in welcome screen */
     public void BackToHomeScreen()
 	{
@@ -25,6 +21,7 @@ public class GameScreenButtonBehavior : MonoBehaviour
         WelcomeScreen.SetActive(false);
         InGameOverlay.SetActive(true);
         MenuPanel.SetActive(false);
+        game.SetDifficulty();
 	}
 
     /* Interaction with "X" on top right */
