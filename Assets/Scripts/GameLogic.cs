@@ -53,8 +53,9 @@ public class GameLogic : MonoBehaviour
     private float hardNextWaveTime;
     private int hardWaveIndex;
     bool triggerE, triggerM, triggerH = false;
-    SettingScreenBehavior settingBehavior;
-    private string difficulty; 
+    private string difficulty;
+
+    public GameObject settingsScreen;
     //private int waveSize;
 
 
@@ -77,21 +78,24 @@ public class GameLogic : MonoBehaviour
         medNextWaveTime = medDifWaves[0].startTime;
         hardNextWaveTime = hardDifWaves[0].startTime;
 
-        difficulty = settingBehavior.LevelDifficulty;
-        Debug.Log(difficulty);
+        settingsScreen = GameObject.FindGameObjectWithTag("HomeScreen");
+        difficulty =  settingsScreen.GetComponent<HomePageBehavior>().LevelDifficulty;
+
         switch (difficulty)
         {
-            case "EasyToggle":
+            case "EasyToggle (UnityEngine.UI.Toggle)":
                 triggerE = true;
                 break;
-            case "MediumToggle":
+            case "MediumToggle (UnityEngine.UI.Toggle)":
                 triggerM = true;
                 break;
-            case "HardToggle":
+            case "HardToggle (UnityEngine.UI.Toggle)":
                 triggerH = true;
                 break;
+            default:
+                triggerE = true;
+                break;
         }
-        triggerM = true;
 
         winState = GameState.IN_PROGRESS;
 
