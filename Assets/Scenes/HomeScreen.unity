@@ -131,7 +131,6 @@ GameObject:
   m_Component:
   - component: {fileID: 9499007}
   - component: {fileID: 9499008}
-  - component: {fileID: 9499009}
   m_Layer: 0
   m_Name: SceneLoader
   m_TagString: Untagged
@@ -169,18 +168,6 @@ MonoBehaviour:
   progressText: {fileID: 2095525445}
   slider: {fileID: 315626814}
   canvas: {fileID: 903884528}
---- !u!114 &9499009
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9499006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ed10a892aa7e4a6ba5a3acaa3badc1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &16488546
 GameObject:
   m_ObjectHideFlags: 0
