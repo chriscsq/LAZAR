@@ -21,7 +21,7 @@ public class GameLogic : MonoBehaviour
     }
 
     [System.Serializable]
-    public struct MidDif {
+    public struct MedDif {
         public float startTime;
         public float spawnPeriod;
         public SpawnController spawnPoint;
@@ -40,12 +40,18 @@ public class GameLogic : MonoBehaviour
     public float WIN_DELAY_SECONDS = 3.0f; // Min delay between last enemy destruction and "winning" the game.
     public GameObject winMessage;
     public WaveInfo[] waves;
-    public MidDif[] midDifWaves;
+    public MedDif[] medDifWaves;
     public HardDif[] hardDifWaves;
 
     private float timer;
     private float nextWaveTime;
     private int waveIndex;
+    private float medTimer;
+    private float medNextWaveTime;
+    private int medWaveIndex;
+    private float hardTimer;
+    private float hardNextWaveTime;
+    private int hardWaveIndex;
     [SerializeField]
     SettingScreenBehavior settingScreenBehavior;
     //private int waveSize;
@@ -61,33 +67,24 @@ public class GameLogic : MonoBehaviour
     {
         // Sort the waves by startTime
         waves = waves.OrderBy(o => o.startTime).ToArray();
+        medDifWaves = medDifWaves.OrderBy(o => o.startTime).ToArray();
+        hardDifWaves = hardDifWaves.OrderBy(o => o.startTime).ToArray();
 
-        timer = 0.0f;
-        waveIndex = 0;
+        timer = medTimer = hardTimer =  0.0f;
+        waveIndex = medWaveIndex = hardWaveIndex = 0;
         nextWaveTime = waves[0].startTime;
         winState = GameState.IN_PROGRESS;
 
         winMessage.SetActive(false);
-        handleDifficulty();
+        //handleDifficulty();
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        // If Pausing is ever implemented, can move most of the below into a block of if(!paused){...}
-        timer += Time.deltaTime;
-        if (timer > nextWaveTime && waveIndex < waves.Length && winState == GameState.IN_PROGRESS) {
-            WaveInfo nextWave = waves[waveIndex];
-            SpawnController sc = nextWave.spawnPoint;
-
-            sc.StartWave(nextWave.spawnPeriod, nextWave.subwaves);
-            
-            waveIndex++;
-            if (waveIndex < waves.Length) {
-                nextWaveTime = waves[waveIndex].startTime;
-            }
-        }
+        //startEasyWave();
+        handleDifficulty();
 
         TestIfGameWon();
 
@@ -120,14 +117,69 @@ public class GameLogic : MonoBehaviour
         Debug.Log(difficulty);
         switch (difficulty) {
             case "Current: Easy":
-               // waveSize = 3;
+                startEasyWave();
                 break;
             case "Current: Medium":
-               // waveSize = 5;
-                break;
+                // waveSize = 5;
+                startMedWave();
+               break;
             case "Current: Hard":
-               // waveSize = 7;
+                // waveSize = 7;
+                startHardWave();
                 break;
+        }
+    }
+
+    public void startEasyWave() {
+        // If Pausing is ever implemented, can move most of the below into a block of if(!paused){...}
+        timer += Time.deltaTime;
+        if (timer > nextWaveTime && waveIndex < waves.Length && winState == GameState.IN_PROGRESS)
+        {
+            WaveInfo nextWave = waves[waveIndex];
+            SpawnController sc = nextWave.spawnPoint;
+
+            sc.StartWave(nextWave.spawnPeriod, nextWave.subwaves);
+
+            waveIndex++;
+            if (waveIndex < waves.Length)
+            {
+                nextWaveTime = waves[waveIndex].startTime;
+            }
+        }
+    }
+
+    private void startMedWave() {
+        // If Pausing is ever implemented, can move most of the below into a block of if(!paused){...}
+        medTimer += Time.deltaTime;
+        if (medTimer > medNextWaveTime && medWaveIndex < medDifWaves.Length && winState == GameState.IN_PROGRESS)
+        {
+            MedDif nextWave = medDifWaves[medWaveIndex];
+            SpawnController sc = nextWave.spawnPoint;
+
+            sc.StartWave(nextWave.spawnPeriod, nextWave.subwaves);
+
+            medWaveIndex++;
+            if (medWaveIndex < medDifWaves.Length)
+            {
+                medNextWaveTime = medDifWaves[medWaveIndex].startTime;
+            }
+        }
+    }
+    private void startHardWave() {
+        // If Pausing is ever implemented, can move most of the below into a block of if(!paused){...}
+        timer += Time.deltaTime;
+        if (timer > nextWaveTime && waveIndex < waves.Length && winState == GameState.IN_PROGRESS)
+        {
+            WaveInfo nextWave = waves[waveIndex];
+            SpawnController sc = nextWave.spawnPoint;
+
+            sc.StartWave(nextWave.spawnPeriod, nextWave.subwaves);
+
+            waveIndex++;
+            if (waveIndex < waves.Length)
+            {
+                nextWaveTime = waves[waveIndex].startTime;
+            }
         }
     }
 }
