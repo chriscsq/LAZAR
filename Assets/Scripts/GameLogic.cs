@@ -52,7 +52,7 @@ public class GameLogic : MonoBehaviour
     private float hardTimer;
     private float hardNextWaveTime;
     private int hardWaveIndex;
-    bool triggerE, triggerM, triggerH;
+    bool triggerE, triggerM, triggerH = false;
     SettingScreenBehavior settingBehavior;
     private string difficulty; 
     //private int waveSize;
@@ -91,6 +91,7 @@ public class GameLogic : MonoBehaviour
                 triggerH = true;
                 break;
         }
+        triggerM = true;
 
         winState = GameState.IN_PROGRESS;
 
