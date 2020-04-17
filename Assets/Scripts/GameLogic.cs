@@ -88,6 +88,7 @@ public class GameLogic : MonoBehaviour
             difficulty = debugDifficulty;
         }
 
+
         switch (difficulty)
         {
             case GameDifficulty.EASY:
@@ -111,6 +112,7 @@ public class GameLogic : MonoBehaviour
         winState = GameState.UNSTARTED;
         //lastUnpausedState = GameState.IN_PROGRESS;
 
+
         winMessage.SetActive(false);
 
     }
@@ -131,6 +133,38 @@ public class GameLogic : MonoBehaviour
             //lastUnpausedState = winState;
             
             if(winState == GameState.WON && Time.time >= winAnnounceTime) winMessage.SetActive(true);
+        }
+    }
+
+    public void SetDifficulty()
+    {
+        settingsScreen = GameObject.FindGameObjectWithTag("HomeScreen");
+        difficulty = settingsScreen.GetComponent<HomePageBehavior>().LevelDifficulty;
+
+        switch (difficulty)
+        {
+            case "EasyToggle (UnityEngine.UI.Toggle)":
+                Debug.Log("difficulty is : " + difficulty);
+
+                triggerE = true;
+                triggerM = triggerH = false;
+                break;
+            case "MediumToggle (UnityEngine.UI.Toggle)":
+                Debug.Log("difficulty is : " + difficulty);
+
+                triggerM = true;
+                triggerE = triggerH = false;
+                break;
+            case "HardToggle (UnityEngine.UI.Toggle)":
+                Debug.Log("difficulty is : " + difficulty);
+
+                triggerH = true;
+                triggerE = triggerM = false;
+                break;
+            default:
+                triggerE = true;
+                triggerM = triggerH = false;
+                break;
         }
     }
 

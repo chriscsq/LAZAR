@@ -26,6 +26,7 @@ public class GameScreenButtonBehavior : MonoBehaviour
         InGameOverlay.SetActive(true);
         MenuPanel.SetActive(false);
         Screen.orientation = ScreenOrientation.AutoRotation;
+
 	}
 
     /* Interaction with "X" on top right */
