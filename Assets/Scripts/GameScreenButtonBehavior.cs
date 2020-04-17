@@ -8,19 +8,18 @@ public class GameScreenButtonBehavior : MonoBehaviour
     [SerializeField]
     private GameObject WelcomeScreen;
     [SerializeField]
-    private GameObject LoadScreen;
-    [SerializeField]
     private GameObject InGameOverlay;
     [SerializeField]
     private GameObject MenuPanel;
 
+    /* Interaction with the quit button in welcome screen */
     public void BackToHomeScreen()
 	{
         SceneManager.LoadScene("HomeScreen");
-        LoadScreen.SetActive(false);
 
     }
 
+    /* Interaction with play button */
     public void BeginPlayGame()
 	{
         Debug.Log("Play game started");
@@ -29,16 +28,19 @@ public class GameScreenButtonBehavior : MonoBehaviour
         MenuPanel.SetActive(false);
 	}
 
+    /* Interaction with "X" on top right */
     public void MenuPanelOnClick()
     {
         MenuPanel.SetActive(true);
     }
 
+    /* Interaction with quit button in overlay */
     public void QuitGameOnClick()
     {
         SceneManager.LoadScene("HomeScreen");
     }
 
+    /* Hide menu */
     public void BackButtonOnClick()
     {
         MenuPanel.SetActive(false);

@@ -38,11 +38,12 @@ public class SceneLoader : MonoBehaviour
             yield return null;
         }
 
-        yield return new WaitForSeconds(1.5f);
-
         UpdateProgressUI(operation.progress);
         operation = null;
+        Debug.Log("Setactive false");
         canvas.gameObject.SetActive(false);
+        Debug.Log("Setactive false2");
+
 
     }
 

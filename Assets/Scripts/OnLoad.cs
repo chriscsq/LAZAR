@@ -14,6 +14,8 @@ public class OnLoad : MonoBehaviour
     {
         WelcomeScreen.SetActive(true);
         InGameOverlay.SetActive(false);
+        GameObject load = GameObject.Find("SceneLoader");
+        load.SetActive(false);
     }
 
     // Update is called once per frame
