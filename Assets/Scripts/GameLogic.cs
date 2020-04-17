@@ -55,6 +55,7 @@ public class GameLogic : MonoBehaviour
     bool triggerE, triggerM, triggerH = false;
     private string difficulty;
 
+    [HideInInspector]
     public GameObject settingsScreen;
     //private int waveSize;
 
