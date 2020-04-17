@@ -52,8 +52,9 @@ public class GameLogic : MonoBehaviour
     private float hardTimer;
     private float hardNextWaveTime;
     private int hardWaveIndex;
-    [SerializeField]
-    SettingScreenBehavior settingScreenBehavior;
+    bool triggerE, triggerM, triggerH;
+    SettingScreenBehavior settingBehavior;
+    private string difficulty; 
     //private int waveSize;
 
 
@@ -73,6 +74,24 @@ public class GameLogic : MonoBehaviour
         timer = medTimer = hardTimer =  0.0f;
         waveIndex = medWaveIndex = hardWaveIndex = 0;
         nextWaveTime = waves[0].startTime;
+        medNextWaveTime = medDifWaves[0].startTime;
+        hardNextWaveTime = hardDifWaves[0].startTime;
+
+        difficulty = settingBehavior.LevelDifficulty;
+        Debug.Log(difficulty);
+        switch (difficulty)
+        {
+            case "EasyToggle":
+                triggerE = true;
+                break;
+            case "MediumToggle":
+                triggerM = true;
+                break;
+            case "HardToggle":
+                triggerH = true;
+                break;
+        }
+
         winState = GameState.IN_PROGRESS;
 
         winMessage.SetActive(false);
@@ -82,7 +101,13 @@ public class GameLogic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        handleDifficulty();
+        if (triggerE)
+            startEasyWave();
+        else if (triggerM)
+            startMedWave();
+        else if (triggerH)
+            startHardWave();
+
 
         TestIfGameWon();
 
@@ -109,24 +134,6 @@ public class GameLogic : MonoBehaviour
             }
         }
         return gameWon;
-    }
-
-    public void handleDifficulty() {
-        string difficulty = settingScreenBehavior.GetCurrentDifficulty();
-        Debug.Log(difficulty);
-        switch (difficulty) {
-            case "Current: Easy":
-                startEasyWave();
-                break;
-            case "Current: Medium":
-                // waveSize = 5;
-                startMedWave();
-               break;
-            case "Current: Hard":
-                // waveSize = 7;
-                startHardWave();
-                break;
-        }
     }
 
     public void startEasyWave() {
