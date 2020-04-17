@@ -95,9 +95,10 @@ public class GameLogic : MonoBehaviour
 
         bool gameWon = false;
         // If there are no more waves left...
-        if (waveIndex >= waves.Length) {
+        if (waveIndex >= waves.Length || medWaveIndex >= medDifWaves.Length || hardWaveIndex >= hardDifWaves.Length) {
             // ... and the last wave has been completely spawned ...
-            if (waves.LastOrDefault().spawnPoint.DoneSpawningEnemies()) {
+            if (waves.LastOrDefault().spawnPoint.DoneSpawningEnemies() || medDifWaves.LastOrDefault().spawnPoint.DoneSpawningEnemies() ||
+                hardDifWaves.LastOrDefault().spawnPoint.DoneSpawningEnemies()) {
                 // ... and no enemies can be found in the scene ...
                 if (GameObject.FindGameObjectsWithTag("Enemy").Length <= 0) {
                     // ... then the game has been won!

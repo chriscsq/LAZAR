@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.5748171, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -543,6 +543,17 @@ MonoBehaviour:
     - enemyType: {fileID: 7117845952033320867, guid: cebb2936fcdf5814e99551802c1222ad,
         type: 3}
       enemyCount: 2
+  medDifWaves:
+  - startTime: 0
+    spawnPeriod: 0
+    spawnPoint: {fileID: 0}
+    subwaves: []
+  hardDifWaves:
+  - startTime: 0
+    spawnPeriod: 0
+    spawnPoint: {fileID: 0}
+    subwaves: []
+  settingScreenBehavior: {fileID: 0}
 --- !u!1 &506234328
 GameObject:
   m_ObjectHideFlags: 0
