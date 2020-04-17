@@ -121,6 +121,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: 62521989584fb5c4aa72d13b31402503, type: 2}
+--- !u!1 &40919614 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7117845952033320867, guid: c11361b2c1ceb6445a0d46f20ffc4378,
+    type: 3}
+  m_PrefabInstance: {fileID: 1834402789}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &131096907
 GameObject:
   m_ObjectHideFlags: 0
@@ -544,14 +550,32 @@ MonoBehaviour:
         type: 3}
       enemyCount: 2
   medDifWaves:
-  - startTime: 0
-    spawnPeriod: 0
-    spawnPoint: {fileID: 0}
-    subwaves: []
+  - startTime: 4
+    spawnPeriod: 0.5
+    spawnPoint: {fileID: 1014727153}
+    subwaves:
+    - enemyType: {fileID: 40919614}
+      enemyCount: 6
+    - enemyType: {fileID: 7117845952033320867, guid: cebb2936fcdf5814e99551802c1222ad,
+        type: 3}
+      enemyCount: 4
   hardDifWaves:
+  - startTime: 3
+    spawnPeriod: 0.5
+    spawnPoint: {fileID: 1014727153}
+    subwaves:
+    - enemyType: {fileID: 40919614}
+      enemyCount: 10
+    - enemyType: {fileID: 7117845952033320867, guid: cebb2936fcdf5814e99551802c1222ad,
+        type: 3}
+      enemyCount: 6
   - startTime: 0
     spawnPeriod: 0
-    spawnPoint: {fileID: 0}
+    spawnPoint: {fileID: 1014727153}
+    subwaves: []
+  - startTime: 0
+    spawnPeriod: 0
+    spawnPoint: {fileID: 1014727153}
     subwaves: []
   settingScreenBehavior: {fileID: 0}
 --- !u!1 &506234328
