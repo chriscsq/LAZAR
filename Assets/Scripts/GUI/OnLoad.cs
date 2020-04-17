@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class OnLoad : MonoBehaviour
 {
+
+    [SerializeField]
+    private GameObject welcome, overlay;
     // Start is called before the first frame update
     void Start()
     {
         GameObject load = GameObject.Find("SceneLoader");
         load.SetActive(false);
-        GameObject screen = GameObject.Find("WelcomeScreen");
-        GameObject overlay = GameObject.Find("InGameOverlay");
-        screen.SetActive(true);
+        welcome.SetActive(true);
         overlay.SetActive(false);
 
     }

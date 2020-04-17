@@ -1205,6 +1205,7 @@ MonoBehaviour:
     spawnPeriod: 0
     spawnPoint: {fileID: 1014727153}
     subwaves: []
+  settingsScreen: {fileID: 0}
 --- !u!1 &506234328
 GameObject:
   m_ObjectHideFlags: 0
@@ -1851,6 +1852,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ed10a892aa7e4a6ba5a3acaa3badc1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  welcome: {fileID: 1405421661}
+  overlay: {fileID: 283139986}
 --- !u!1 &574426105
 GameObject:
   m_ObjectHideFlags: 0
