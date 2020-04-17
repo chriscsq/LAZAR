@@ -16,3 +16,12 @@ The following are things to either do in the future, or before submission if the
  * Fancier enemy vanishing effect.
  * Custom mirror model.
  * Custom turret model.
+
+## Possible Game Models:
+Chest:
+ * https://blendswap.com/blend/22259
+
+House:
+ * https://www.blendswap.com/blend/20445
+ * https://blendswap.com/blend/7412
+ 
