@@ -131,16 +131,15 @@ public class GameLogic : MonoBehaviour
             
             TestIfGameWon();
             
-            //lastUnpausedState = winState;
-            
-            if(winState == GameState.WON && Time.time >= winAnnounceTime) winMessage.SetActive(true);
+            //lastUnpausedState = winState;            
         }
+        if(winState == GameState.WON && Time.time >= winAnnounceTime) winMessage.SetActive(true);
     }
 
     
 
     public void TestIfGameWon() {
-
+        if (winState != GameState.IN_PROGRESS) return;
 
         if(GameObject.FindGameObjectsWithTag("EnemyGoal").Length <= 0) {
             winState = GameState.LOST;

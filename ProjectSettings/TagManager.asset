@@ -8,6 +8,7 @@ TagManager:
   - Mirror
   - HomeScreen
   - EnemyGoal
+  - Mountain
   layers:
   - Default
   - TransparentFX

@@ -4,7 +4,9 @@ Things we're definitely aiming to complete before submission:
 * Create the final level layout.
     * Speedy ghosts
     * Final enemy numbers.
-    * Colour and tracker for special mirror. 
+    * Colour and tracker for special mirror.
+    * Ghost Size
+    * Turret malfunction.
 * Might have to do some extended tracking fixes.
 
 ## Optional
