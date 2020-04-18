@@ -89,7 +89,7 @@ public class EnemyController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) 
     {
-        if (other.gameObject.CompareTag("Chest")) 
+        if (other.gameObject.CompareTag("EnemyGoal")) 
         {
             Debug.Log("Collide");
             Treasure chest = other.gameObject.GetComponent<Treasure>();

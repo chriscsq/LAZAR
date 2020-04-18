@@ -262,7 +262,7 @@ GameObject:
   - component: {fileID: 740293561973295034}
   - component: {fileID: 740293561973295033}
   m_Layer: 0
-  m_Name: ghostEnemy 1
+  m_Name: ghostEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -370,7 +370,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 2
-  m_Speed: 0.25
+  m_Speed: 1
   m_Acceleration: 0.8
   avoidancePriority: 50
   m_AngularSpeed: 120

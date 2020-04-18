@@ -40,6 +40,7 @@ public class GameLogic : MonoBehaviour
 
     public float WIN_DELAY_SECONDS = 3.0f; // Min delay between last enemy destruction and "winning" the game.
     public GameObject winMessage;
+    public GameObject loseMessage;
     public WaveInfo[] waves;
     public MedDif[] medDifWaves;
     public HardDif[] hardDifWaves;
@@ -138,11 +139,14 @@ public class GameLogic : MonoBehaviour
 
     
 
-    public bool TestIfGameWon() {
-        if (winState == GameState.WON) return true;
-        if (winState == GameState.LOST) return false;
+    public void TestIfGameWon() {
 
-        bool gameWon = false;
+
+        if(GameObject.FindGameObjectsWithTag("EnemyGoal").Length <= 0) {
+            winState = GameState.LOST;
+            loseMessage.SetActive(true);
+        }
+
         // If there are no more waves left...
         if (waveIndex >= waves.Length || medWaveIndex >= medDifWaves.Length || hardWaveIndex >= hardDifWaves.Length) {
             // ... and the last wave has been completely spawned ...
@@ -151,13 +155,11 @@ public class GameLogic : MonoBehaviour
                 // ... and no enemies can be found in the scene ...
                 if (GameObject.FindGameObjectsWithTag("Enemy").Length <= 0) {
                     // ... then the game has been won!
-                    gameWon = true;
                     winState = GameState.WON;
                     winAnnounceTime = Time.time + WIN_DELAY_SECONDS;
                 }
             }
         }
-        return gameWon;
     }
 
     public void startEasyWave() {
