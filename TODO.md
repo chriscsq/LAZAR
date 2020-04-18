@@ -2,6 +2,9 @@
 ## Crucial
 Things we're definitely aiming to complete before submission:
 * Create the final level layout.
+    * Speedy ghosts
+    * Final enemy numbers.
+    * Colour and tracker for special mirror. 
 * Might have to do some extended tracking fixes.
 
 ## Optional
